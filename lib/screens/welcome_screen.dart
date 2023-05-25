@@ -10,6 +10,22 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+        body: SafeArea(
+            child: Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 25,
+          horizontal: 35,
+        ),
+        child: Column(
+          children: [
+            Image.asset("assets/image1.png", height: 300),
+            const SizedBox(height: 20),
+            const Text("Let's get started"),
+          ],
+        ),
+      ),
+    )));
   }
 }
