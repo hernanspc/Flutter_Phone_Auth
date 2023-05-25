@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phoneauth_firebase/widgets/custom_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -22,7 +23,29 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: [
             Image.asset("assets/image1.png", height: 300),
             const SizedBox(height: 20),
-            const Text("Let's get started"),
+            const Text(
+              "Let's get started",
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "Never a better time than now to start.",
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black38,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 20),
+            //custom button
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: CustomButton(text: 'Get started', onPressed: () {}),
+            )
           ],
         ),
       ),
