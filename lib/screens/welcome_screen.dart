@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phoneauth_firebase/screens/register_screen.dart';
 import 'package:phoneauth_firebase/widgets/custom_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -20,6 +21,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           horizontal: 35,
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset("assets/image1.png", height: 300),
             const SizedBox(height: 20),
@@ -44,7 +46,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             SizedBox(
               width: double.infinity,
               height: 50,
-              child: CustomButton(text: 'Get started', onPressed: () {}),
+              child: CustomButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RegisterScreen()));
+                },
+                text: 'Get started',
+              ),
             )
           ],
         ),
