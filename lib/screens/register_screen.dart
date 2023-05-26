@@ -1,3 +1,4 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -9,6 +10,19 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController phoneController = TextEditingController();
+
+  Country selectedCountry = Country(
+    phoneCode: "51",
+    countryCode: "PE",
+    e164Sc: 0,
+    geographic: true,
+    level: 1,
+    name: "Perú",
+    example: "Perú",
+    displayName: "Perú",
+    displayNameNoCountryCode: "PE",
+    e164Key: "",
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +68,44 @@ class _RegisterScreenState extends State<RegisterScreen> {
             //SEPARADOR
             const SizedBox(height: 20),
             TextFormField(
+              cursorColor: Colors.purple,
               controller: phoneController,
-            )
+              decoration: InputDecoration(
+                  hintText: "Enter phone number",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.black12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.black12),
+                  ),
+                  prefixIcon: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          showCountryPicker(
+                            context: context,
+                            countryListTheme: const CountryListThemeData(
+                              bottomSheetHeight: 550,
+                            ),
+                            onSelect: (value) {
+                              setState(() {
+                                selectedCountry = value;
+                              });
+                            },
+                          );
+                        },
+                        child: Text(
+                          "${selectedCountry.flagEmoji} + ${selectedCountry.phoneCode}",
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ))),
+            ),
             //SEPARADOR
           ],
         ),

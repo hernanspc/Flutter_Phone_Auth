@@ -10,10 +10,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: true,
-      home: WelcomeScreen(),
+      home: const WelcomeScreen(),
       title: 'FlutterPhoneAuth',
+      theme: ThemeData(
+        textSelectionTheme: const TextSelectionThemeData(
+          selectionColor: Color.fromARGB(255, 240, 157, 255),
+          selectionHandleColor: Colors.red,
+        ),
+      ),
     );
   }
 }
