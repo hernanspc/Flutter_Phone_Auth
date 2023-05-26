@@ -26,6 +26,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    phoneController.selection = TextSelection.fromPosition(TextPosition(
+      offset: phoneController.text.length,
+    ));
     return Scaffold(
       body: SafeArea(
           child: Center(
@@ -70,6 +73,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
             TextFormField(
               cursorColor: Colors.purple,
               controller: phoneController,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              onChanged: (value) {
+                setState(() {
+                  phoneController.text = value;
+                });
+              },
               decoration: InputDecoration(
                   hintText: "Enter phone number",
                   enabledBorder: OutlineInputBorder(
@@ -81,30 +90,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     borderSide: const BorderSide(color: Colors.black12),
                   ),
                   prefixIcon: Container(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          showCountryPicker(
-                            context: context,
-                            countryListTheme: const CountryListThemeData(
-                              bottomSheetHeight: 550,
-                            ),
-                            onSelect: (value) {
-                              setState(() {
-                                selectedCountry = value;
-                              });
-                            },
-                          );
-                        },
-                        child: Text(
-                          "${selectedCountry.flagEmoji} + ${selectedCountry.phoneCode}",
-                          style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                        showCountryPicker(
+                          context: context,
+                          countryListTheme: const CountryListThemeData(
+                            bottomSheetHeight: 550,
                           ),
+                          onSelect: (value) {
+                            setState(() {
+                              selectedCountry = value;
+                            });
+                          },
+                        );
+                      },
+                      child: Text(
+                        "${selectedCountry.flagEmoji} + ${selectedCountry.phoneCode}",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ))),
+                      ),
+                    ),
+                  ),
+                  suffixIcon: phoneController.text.length > 8 &&
+                          phoneController.text.length < 10
+                      ? Container(
+                          height: 30,
+                          width: 30,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.green,
+                          ),
+                          child: const Icon(
+                            Icons.done,
+                            color: Colors.white,
+                            size: 20,
+                          ))
+                      : null),
             ),
             //SEPARADOR
           ],
