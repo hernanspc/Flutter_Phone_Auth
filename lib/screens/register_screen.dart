@@ -1,6 +1,8 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:phoneauth_firebase/provider/auth_provider.dart';
 import 'package:phoneauth_firebase/widgets/custom_button.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -27,9 +29,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    phoneController.selection = TextSelection.fromPosition(TextPosition(
-      offset: phoneController.text.length,
-    ));
+    phoneController.selection = TextSelection.fromPosition(
+      TextPosition(
+        offset: phoneController.text.length,
+      ),
+    );
     return Scaffold(
       body: SafeArea(
           child: Center(
@@ -148,5 +152,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ))),
     );
+  }
+
+  void sendPhoneNumber() {
+    final ap = Provider.of<AuthProvider>(context, listen: false);
+    String phoneNumber = phoneController.text.trim();
+    // ap.signInWithPhone(context, "+${selectedCountry.phoneCode}$phoneNumber");
   }
 }
