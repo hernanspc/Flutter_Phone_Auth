@@ -92,7 +92,6 @@ class _OtpScreenState extends State<OtpScreen> {
                           ),
                         ),
                         onCompleted: (value) {
-                          print('$value');
                           setState(() {
                             otpCode = value;
                           });
