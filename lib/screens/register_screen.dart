@@ -146,7 +146,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             SizedBox(
               width: double.infinity,
               height: 50,
-              child: CustomButton(text: "Inicio Sesion", onPressed: () {}),
+              child: CustomButton(
+                  text: "Inicio Sesion", onPressed: () => sendPhoneNumber()),
             )
           ],
         ),
@@ -157,6 +158,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void sendPhoneNumber() {
     final ap = Provider.of<AuthProvider>(context, listen: false);
     String phoneNumber = phoneController.text.trim();
-    // ap.signInWithPhone(context, "+${selectedCountry.phoneCode}$phoneNumber");
+    ap.signInWithPhone(context, "+${selectedCountry.phoneCode}$phoneNumber");
   }
 }
